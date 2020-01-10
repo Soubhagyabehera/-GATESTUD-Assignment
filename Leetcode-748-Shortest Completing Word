@@ -1,0 +1,47 @@
+class Solution {
+public:
+    string shortestCompletingWord(string licensePlate, vector<string>& words) {
+        vector<map<char,int>>v;
+        map<char,int> m,n;
+        string result;
+        int min=10000;
+        for(char c:licensePlate)
+        {
+            if(c>=65)
+                m[c]++;
+        }
+            
+        static int i=0;      
+        for(string s:words)
+        {  
+            bool present=false;
+            for(char c:s)
+            {
+                n[c]++;
+                v.push_back(n);   
+                cout<<v[i][c];
+            }
+            for(char c:licensePlate)
+            {
+                if(c>=65)
+                { 
+                if(m[c]==v.at(i)[c])
+                    present=true;
+                else
+                    present=false;
+                }
+            }
+            if(present)
+            {
+                if(s.length()<min)
+                {
+                    result=s;
+                    min=s.length();
+                }
+            }
+            i++;
+        }
+        return result;
+        
+    }
+};
