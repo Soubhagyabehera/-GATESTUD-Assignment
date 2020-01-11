@@ -1,0 +1,39 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        map<char,int> m,n;
+        if(s.size()<t.size())
+        {
+            for(char c:s)
+            m[c]++;
+            for(char c:t)
+            {
+                n[c]++;
+            }
+            for(char c:t)
+            {
+                 if(m.find(c)==m.end() || m[c]!=n[c])
+                    return false;
+            }
+            return true;
+        }
+        else
+        {
+            for(char c:t)
+            m[c]++;
+            for(char c:s)
+            {
+                n[c]++;
+            }
+             for(char c:s)
+            {
+                 if(m.find(c)==m.end() || m[c]!=n[c])
+                    return false;
+            }
+            return true;
+        }
+        
+        
+            
+    }
+};
