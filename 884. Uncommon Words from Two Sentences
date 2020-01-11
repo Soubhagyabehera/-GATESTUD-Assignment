@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<string> uncommonFromSentences(string A, string B) {
+        vector<string> v1;
+        map<string,int> m,n;
+        string s1=A+" "+B;
+        istringstream iss(s1);
+        string s;
+        while(iss >> s)
+        {
+            
+            m[s]++;
+        }
+        for(auto it=m.begin();it!=m.end();it++)
+        {
+            if(it->second<=1)
+                v1.push_back(it->first);
+        }
+        return v1;
+    }
+};
