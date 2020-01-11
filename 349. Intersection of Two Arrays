@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> result,compare,compare1;
+        set<int>s;
+        if(nums1.size()<nums2.size())
+        {
+            compare=nums1;   
+            compare1=nums2;
+        }
+        else
+        {
+            compare=nums2;
+            compare1=nums1;
+        }
+        for(int i:compare)
+        {
+            if(find(compare1.begin(),compare1.end(),i)!=compare1.end())
+                s.insert(i);
+        }
+        for(int i:s)
+            result.push_back(i);
+        return result;
+    }
+};
