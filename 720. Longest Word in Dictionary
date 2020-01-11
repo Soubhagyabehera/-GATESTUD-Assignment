@@ -1,0 +1,75 @@
+#include<iostream>
+#include<vector>
+#include<map>
+#include<set>
+#include<algorithm>
+using namespace std;
+
+class Solution {
+public:
+    string longestWord(vector<string>& words) {
+        vector<string> t,u,res;
+        //int count[1000]={0};
+        for(string s:words)
+        {
+            for(string q:words)
+            {
+                if(s!=q)
+                {
+                    if(q.substr(0,s.length())==s && q.length()==s.length()+1)
+                    {
+                        //cout<<s<<" "<<q<<" "<<endl;
+                        u.push_back(s);
+                        break;
+                    }
+                }
+            }
+        }
+        string result="";
+        for(string s:words)
+        {
+            if(find(words.begin(),words.end(),string(1,s[0]))==words.end())
+                    continue;
+            if(find(u.begin(),u.end(),s)==u.end())
+            {
+                //cout<<s<<endl;
+                int count=0;
+                for(int i=1;i<s.length();i++)
+                {
+                    
+                    
+                    if(find(words.begin(),words.end(),s.substr(0,s.length()-i))!=words.end())
+                    {
+                        count++;
+                    }
+                    
+                }
+              
+                if(count==s.length()-1)
+                {
+                     if(result.length()<s.length())
+                    result=s;
+
+                    if(result.length()==s.length())
+                    {
+                        if(result>s)
+                            result=s;
+                    }
+                }
+            }
+        }
+       
+           
+
+        
+        return result;
+    }
+};
+int main()
+{
+    vector<string> words={"rac","rs","ra","on","r","otif","o","onpdu","rsf","rs","ot","oti","racy","onpd"};
+    Solution s;
+    cout<<s.longestWord(words);
+    
+    
+}
