@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int longestPalindrome(string s) {
+        int result=0;
+        map<char,int> m;
+        for(char c:s)
+            m[c]++;
+        for(auto it=m.begin();it!=m.end();it++)
+        {
+            result=result+(it->second/2)*2;
+            if(result%2==0 && it->second%2==1)
+                result++;
+
+        }
+        return result;
+    }
+};
